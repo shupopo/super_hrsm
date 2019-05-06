@@ -70,7 +70,7 @@ function Game() {
                     pipes.add(pipe);
                 }
             }
-            if (pipeCount == 10) {
+            if (pipeCount == 20) {
                 this.sceneManager.showScene(GameClear);
             }
             //get rid of passed pipes

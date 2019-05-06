@@ -9,11 +9,11 @@ function GameClear() {
         let data = JSON.stringify({
             address: address.elt.value
         });
-        httpPost(url, data, function (result) {
-            console.log(result);
-        }, function (error) {
-            console.log(error);
-        });
+        // httpPost(url, data, function (result) {
+        //     console.log(result);
+        // }, function (error) {
+        //     console.log(error);
+        // });
 
         // for (let i = 0; i < 100; i++) {
         //     let s = createSprite(random(width), random(height), 30, 30);
