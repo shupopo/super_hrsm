@@ -70,7 +70,7 @@ function Game() {
                     pipes.add(pipe);
                 }
             }
-            if (pipeCount == 5) {
+            if (pipeCount == 2) {
                 this.sceneManager.showScene(GameClear);
             }
             //get rid of passed pipes
@@ -107,12 +107,19 @@ function Game() {
 
 
     this.die = function () {
-        console.log("game over!!")
+        console.log("game over!!");
+        let currentMario = mario.position.x;
+        if (mario.position.y < height / 2) {
+            mario.velocity.y = 2 * FLAP;
+        } else {
+            mario.velocity.y = -2 * FLAP;
+        }
         updateSprites(false);
         gameOver = true;
         let gameOverScene = this.sceneManager.findScene(GameOver);
         gameOverScene.setupExecuted = false;
         this.sceneManager.showScene(GameOver);
+
     }
 
 
