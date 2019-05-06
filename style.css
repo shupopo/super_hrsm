@@ -10,16 +10,7 @@ margin: 0px;
 padding: 0px;
 }
 
-#myP5 {
-/*left:30%;
-height:80%;
-position:fixed;*/
-}
 
-#container {
-  width: 800px;
-  margin: auto;
-  }
 
 .btn {
   float: right;
@@ -64,22 +55,3 @@ position:fixed;*/
 
 
 
-#editor {
-  margin:0;
-  padding:0;
-  height:600px;
-  width:800px;
-  display:block;
-  margin:0;
-  padding:0;
-  z-index: 10;
-  /*height:100%;
-  height:400px;
-  margin:0;
-  padding:0;
-  position:fixed;
-  top:0;
-  left:0;
-  width:30%;
-  display:block;*/
-}

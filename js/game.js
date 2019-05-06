@@ -5,7 +5,7 @@ function Game() {
         createCanvas(400, 600);
 
         marioImg = loadImage('assets/mario.png');
-        pipeImg = loadImage('assets/flappy_pipe.png');
+        pipeImg = loadImage('assets/pipe.png');
         groundImg = loadImage('assets/ground.png');
         bgImg = loadImage('assets/flappy_bg.png');
 
