@@ -4,6 +4,7 @@ let GROUND_Y = 450;
 let MIN_OPENING = 300;
 let mario, ground;
 let pipes;
+let goal;
 let gameOver;
 let marioImg, pipeImg, groundImg, bgImg;
 let input, button, logo, logoImg;

@@ -1,6 +1,7 @@
 function Game() {
     let pipeCount;
-
+    let goalCount = 10;
+    let pipeH;
     this.setup = function () {
         createCanvas(400, 600);
 
@@ -8,10 +9,11 @@ function Game() {
         pipeImg = loadImage('assets/pipe.png');
         groundImg = loadImage('assets/ground.png');
         bgImg = loadImage('assets/flappy_bg.png');
+        goalImg = loadImage("assets/goalwithpipe.png")
 
         mario = createSprite(width / 2, height / 2, 40, 40);
         mario.rotateToDirection = true;
-        mario.velocity.x = 4;
+        mario.velocity.x = 8;
         mario.setCollider('circle', 0, 0, 20);
         mario.addImage(marioImg);
 
@@ -55,28 +57,36 @@ function Game() {
 
             //spawn pipes
             if (frameCount % 60 == 0) {
-                var pipeH = random(50, 300);
-                var pipe = createSprite(mario.position.x + width, GROUND_Y - pipeH / 2 + 1 + 100, 80, pipeH);
-                pipe.addImage(pipeImg);
-                pipes.add(pipe);
-                pipeCount++;
-                console.log(pipeCount);
-                //top pipe
-                if (pipeH < 200) {
-                    pipeH = height - (height - GROUND_Y) - (pipeH + MIN_OPENING);
-                    pipe = createSprite(mario.position.x + width, pipeH / 2 - 100, 80, pipeH);
-                    pipe.mirrorY(-1);
+                pipeH = random(50, 300);
+                if (pipeCount == goalCount) {
+                    goal = createSprite(mario.position.x + width, GROUND_Y - pipeH / 2 + 1 + 100, 120, pipeH);
+                    goal.addImage(goalImg);
+                } else {
+                    var pipe = createSprite(mario.position.x + width, GROUND_Y - pipeH / 2 + 1 + 100, 80, pipeH);
                     pipe.addImage(pipeImg);
                     pipes.add(pipe);
+                    console.log(pipeCount);
+                    //top pipe
+                    if (pipeH < 200 && pipeCount != goalCount) {
+                        pipeH = height - (height - GROUND_Y) - (pipeH + MIN_OPENING);
+                        pipe = createSprite(mario.position.x + width, pipeH / 2 - 100, 80, pipeH);
+                        pipe.mirrorY(-1);
+                        pipe.addImage(pipeImg);
+                        pipes.add(pipe);
+                    }
                 }
+                pipeCount++;
             }
-            if (pipeCount == 20) {
+
+            if (goal && mario.position.x > goal.position.x + 20) {
                 this.sceneManager.showScene(GameClear);
             }
             //get rid of passed pipes
             for (var i = 0; i < pipes.length; i++)
-                if (pipes[i].position.x < mario.position.x - width / 2)
+                if (pipes[i].position.x < mario.position.x - width / 2) {
                     pipes[i].remove();
+                }
+
         }
 
         camera.position.x = mario.position.x + width / 4;
@@ -91,6 +101,7 @@ function Game() {
         camera.on();
 
         drawSprites(pipes);
+        drawSprite(goal);
         drawSprite(ground);
         drawSprite(mario);
     }
